@@ -6,7 +6,7 @@ import "./style.css";
 const Book = ({ title, subtitle, authors, link, description, image, Button }) => {
     return (
         <ListItem>
-            <Row className="flex-wrap-reverse"> 
+            <Row className="flex-wrap-reverse">
                 <Col size="md-8">
                     <h3 className="font-italic">{title}</h3>
                     {subtitle && <h5 className="font-italic">{subtitle}</h5>}
@@ -18,6 +18,11 @@ const Book = ({ title, subtitle, authors, link, description, image, Button }) =>
                         </a>
                         <Button />
                     </div>
+                </Col>
+            </Row>
+            <Row>
+                <Col size="md-6">
+                    <p className="font-italic small">Written by {authors}</p>
                 </Col>
             </Row>
             <Row>
