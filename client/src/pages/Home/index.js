@@ -12,7 +12,7 @@ class Home extends Component {
     state = {
         books: [],
         q: "",
-        message: "Enter book name..."
+        message: "Search For A Book To Begin!"
     };
 
     handleInputChange = event => {
@@ -24,16 +24,17 @@ class Home extends Component {
 
     getBooks = () => {
         API.getBooks(this.state.q)
-            .then(res => {
+            .then(res =>
                 this.setState({
                     books: res.data
                 })
-            }).catch(() => {
+            )
+            .catch(() =>
                 this.setState({
                     books: [],
-                    message: "No books found, try a different title."
+                    message: "No Titles Found, Try A Different One!"
                 })
-            });
+            );
     };
 
     handleFormSubmit = event => {
@@ -56,20 +57,20 @@ class Home extends Component {
     };
 
     render() {
-        return(
+        return (
             <Container>
                 <Row>
                     <Col size="md-12">
                         <Jumbotron>
                             <h1 className="text-center">
-                                <strong>Google Books Search</strong>
+                                <strong>(React) Google Books Search</strong>
                             </h1>
                             <h2 className="text-center">Search for and Save Books of Interest.</h2>
                         </Jumbotron>
                     </Col>
                     <Col size="md-12">
                         <Card title="Book Search" icon="far fa-book">
-                            <Form 
+                            <Form
                                 handleInputChange={this.handleInputChange}
                                 handleFormSubmit={this.handleFormSubmit}
                                 q={this.state.q}
@@ -83,7 +84,7 @@ class Home extends Component {
                             {this.state.books.length ? (
                                 <List>
                                     {this.state.books.map(book => (
-                                        <Book 
+                                        <Book
                                             key={book.id}
                                             title={book.volumeInfo.title}
                                             subtitle={book.volumeInfo.subtitle}
@@ -96,15 +97,15 @@ class Home extends Component {
                                                     onClick={() => this.handleBookSave(book.id)}
                                                     className="btn btn-primary ml-2"
                                                 >
-                                                    Save Book
+                                                    Save
                                                 </button>
                                             )}
                                         />
                                     ))}
                                 </List>
                             ) : (
-                                <h2 className="text-center">{this.state.message}</h2>
-                            )}
+                                    <h2 className="text-center">{this.state.message}</h2>
+                                )}
                         </Card>
                     </Col>
                 </Row>
